@@ -1,0 +1,60 @@
+{%extends 'auctions/layout.html'%}
+
+{%block body%}
+    <img src="{{listings.image}}" alt="image" width="300" height="300"> <br>
+    Name: <h2> {{listings.name}} </h2>
+    Description: <p> {{listings.description}} </p>
+    Category: <p> {{listings.category}} </p>
+    Seller: <p> {{listings.user}} </p>
+    Price: <p>{{listings.price_start}}</p>
+
+    {% if user.is_authenticated %}
+        <form action="{% url 'bids' listings.pk %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                Bid: <input class="form-control" type="text" name="price" placeholder="price">
+            </div>
+            {%if message%}
+                {{message}}
+                <button class="btn btn-success" type="submit">Bid</button>
+            {%else%}
+                <button class="btn btn-success" type="submit">Bid</button>
+            {% endif %}
+        </form>
+
+        <form action="{%url 'comments' listings.pk %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                Comment: <input class="form-control" type="text" name="comment" placeholder="comment">
+            </div>
+            <button class="btn btn-success" type="submit">Comment</button>
+        </form>
+
+        <form action="{%url 'watchlist' listings.pk%}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit">add to watchlist</a></button>
+        </form>
+    {% else %}
+        <p>Bid:</p> <a type="button" class="btn btn-success" href="{%url 'login'%}">Login for comment or bid this element</a>
+    {% endif %}
+
+    <h3>Comments</h3>
+    {% for comment in comments %}
+        {% if comment %}
+            <li>{{comment.user}}: {{comment.comment}}</li>
+        {% else %}
+            <h6>No comments yet</h6>
+        {% endif %}
+    {% endfor %}
+
+    <h3>Bids</h3>
+    {% for bids in bid %}
+        {% if bids %}
+            <li>{{bids.user.username}}: {{bids.price_bids}}</li>
+        {% else %}
+            <h6>No bids yet</h6>
+        {% endif %}
+    {% endfor %}
+
+    <p>Back to <button class="btn btn-primary" href="{%url 'index'%}">Inicio</a></button>
+{%endblock%}

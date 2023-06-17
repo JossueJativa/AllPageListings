@@ -1,0 +1,27 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    <h1> {{ title }} </h1>
+
+    {% for watchlists in watchlist %}
+        {% if watchlists %}
+            <ul>
+                <div>
+                    <img src="{{ watchlists.listing.image }}" alt="image" width="100" height="100"></br>
+                    {{watchlists.listing.name}}</br>
+                    {{watchlists.listing.description}}</br>
+                    {{watchlists.listing.price_start}}</br>
+                    {{watchlists.listing.category}}</br>
+
+                    <a type="button" class="btn btn-success" href="{%url 'bids' watchlists.listing.id%}">See your product</a>
+                    <form action="{% url 'deleteWatchlist' watchlists.listing.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </di>
+            </ul>
+        {% else %}
+            <p> You have no items in your watchlist </p>
+        {% endif %}
+    {% endfor %}
+{% endblock  %}
