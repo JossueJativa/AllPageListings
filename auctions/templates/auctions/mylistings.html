@@ -1,17 +1,18 @@
 {% extends 'auctions/layout.html' %}
 
 {% block body %}
+    <h1> My listings </h1>
     {% for listing in listings %}
-        <h1> My listings </h1>
 
         <div class="card">
             <div class="card-body" hight = "200px">
-                <img src="{{ listing.image }}" alt="listing image" class="img-fluid">
-                <h5 class="card-title">{{ listing.title }}</h5>
-                <p class="card-text">{{ listing.description }}</p>
-                <p class="card-text">{{ listing.price_start }}</p>
-                <p class="card-text">{{ listing.category }}</p>
+                <img src="{{ listing.image }}" alt="listing image" class="img-fluid"></br>
+                Name: <h5 class="card-title">{{ listing.name }}</h5>
+                Description: <p class="card-text">{{ listing.description }}</p>
+                Price: <p class="card-text">{{ listing.price_start }}</p>
+                Category: <p class="card-text">{{ listing.category }}</p>
                 <a href="{% url 'bids' listing.id %}" class="btn btn-primary">View</a>
             </div>
+        </div>
     {% endfor %}
 {% endblock  %}

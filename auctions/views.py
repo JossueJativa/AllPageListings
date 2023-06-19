@@ -232,3 +232,37 @@ def mylistings(request):
     return render(request, "auctions/mylistings.html", {
         "listings": Listings.objects.filter(user=user)
     })
+
+def edite(request, id):
+    if request.method == "POST":
+        name = request.POST["name"]
+        description = request.POST["description"]
+        image = request.POST["image"]
+        category = Categories.objects.get(category=request.POST["category"])
+
+        if name == "" or description == "" or image == "":
+            return render(request, "auctions/edite.html", {
+                "message": "Error al editar el listado."
+            })
+
+        # Attempt to create new user
+        try:
+            Listings.objects.filter(id=id).update(name=name, description=description, image=image, 
+                                                  category=category)
+        except IntegrityError:
+            return render(request, "auctions/edite.html", {
+                "message": "Error al editar el listado."
+            })
+        return HttpResponseRedirect(reverse("mylistings"))
+    else:
+        listing = Listings.objects.get(id=id)
+        return render(request, "auctions/edite.html", {
+            "categories": Categories.objects.all(),
+            "listing": listing,
+        })
+    
+def edit(request, id):
+    return render(request, "auctions/edit.html", {
+        "listing": Listings.objects.get(id=id),
+        "categories": Categories.objects.all(),
+    })

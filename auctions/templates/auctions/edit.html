@@ -1,0 +1,20 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    <h1>Edit product: {{listing.name}}</h1>
+
+    <form action="{%url 'edite' listing.id %}" method="post">
+        {% csrf_token %}
+        Name: <input type="text" name="name" value="{{listing.name}}"></br>
+        Description: <textarea class="form-control" type="text" name="description">{{listing.description}}</textarea>
+        Image: <input class="form-control" type="text" name="image" value="{{listing.image}}"></br>
+        <div class="form-group">
+            Select category: <select class="form-control" name="category">
+                {% for category in categories %}
+                    <option>{{category.category}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="submit" value="Save">
+    </form>
+{% endblock  %}

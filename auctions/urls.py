@@ -18,4 +18,6 @@ urlpatterns = [
     path("viewWatchlist", views.viewWatchlist, name="viewWatchlist"),
     path("deleteWatchlist/<int:id>", views.deleteWatchlist, name="deleteWatchlist"),
     path("mylistings", views.mylistings, name="mylistings"),
+    path("edite/<int:id>", views.edite, name="edite"),
+    path("edit/<int:id>", views.edit, name="edit"),
 ]

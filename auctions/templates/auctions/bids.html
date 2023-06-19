@@ -20,6 +20,8 @@
                     <button class="btn btn-success" type="submit">Bid</button>    
                 {% else %}
                     <p>You can't bid your own product</p>
+
+                    <a href="{%url 'edit' listings.pk%}" class="btn btn-primary">Edit</a>
                 {% endif %}
             {% endif %}
         </form>
