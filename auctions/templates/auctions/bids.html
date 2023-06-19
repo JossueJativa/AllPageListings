@@ -11,14 +11,16 @@
     {% if user.is_authenticated %}
         <form action="{% url 'bids' listings.pk %}" method="post">
             {% csrf_token %}
-            <div class="form-group">
-                Bid: <input class="form-control" type="text" name="price" placeholder="price">
-            </div>
-            {%if message%}
-                {{message}}
-                <button class="btn btn-success" type="submit">Bid</button>
-            {%else%}
-                <button class="btn btn-success" type="submit">Bid</button>
+            {% if users %}
+                {% if users != seller %}
+                    <div class="form-group">
+                        Bid: <input class="form-control" type="text" name="price" placeholder="price">
+                    </div>
+                    <button class="btn btn-success" type="submit">Bid</button>
+                    <button class="btn btn-success" type="submit">Bid</button>    
+                {% else %}
+                    <p>You can't bid your own product</p>
+                {% endif %}
             {% endif %}
         </form>
 

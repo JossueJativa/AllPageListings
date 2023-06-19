@@ -102,11 +102,11 @@ def creates(request):
         })
     
 def bids(request, id):
+    user = User.objects.get(username=request.user.username)
     if request.method == "POST":
         price = request.POST["price"]
         listing = Listings.objects.get(id=id)
         price_bid = Listings.objects.get(id=id).price_start
-        user = User.objects.get(username=request.user.username)
 
         if price == "":
             return render(request, "auctions/exception.html", {
@@ -133,7 +133,9 @@ def bids(request, id):
         return render(request, "auctions/bids.html", {
             "listings": listing,
             "bid": Bids.objects.filter(listing=listing).order_by('-price_bids').all(),
-            "comments": Comments.objects.filter(listing=listing)
+            "comments": Comments.objects.filter(listing=listing),
+            "users": user,
+            "seller": listing.user
             })
 
 def comments(request, id):
@@ -218,3 +220,15 @@ def deleteWatchlist (request, id):
         return render(request, "auctions/watchlist.html",{
             "watchlist": Watchlist.objects.filter(user=User.objects.get(username=request.user.username))
         })
+    
+def mylistings(request):
+    if User.is_authenticated:
+        user = User.objects.get(username=request.user.username)
+    else:
+        return render(request, "auctions/exception.html",{
+            "message": "Error al ver la lista de observación."
+        }) 
+
+    return render(request, "auctions/mylistings.html", {
+        "listings": Listings.objects.filter(user=user)
+    })
