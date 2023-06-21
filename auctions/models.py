@@ -16,7 +16,7 @@ class Categories(models.Model):
 class Listings(models.Model):
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=64)
-    image = models.CharField(max_length=64)
+    image = models.CharField(max_length=200)
     price_start = models.CharField(max_length=64)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="category_listings")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_listings")

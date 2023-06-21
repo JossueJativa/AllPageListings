@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'commerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'buala',
+        'USER': 'postgres',
+        'PASSWORD': 'Pizzagaguayana_12',
+        'HOST': 'localhost',
+        'DATABASE_PORT': '5432',
     }
 }
 
