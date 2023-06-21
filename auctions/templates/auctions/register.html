@@ -25,6 +25,16 @@
         </div>
         <input class="btn btn-primary" type="submit" value="Register">
     </form>
+
+    Connect with Facebook: <a href="{% url 'social:begin' 'facebook'%}" class="btn btn-outline-primary">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/2048px-Facebook_f_logo_%282019%29.svg.png" height="25px" width="25px"> 
+        Login with Facebook
+    </a></br>
+    Connect with gmail: <div class="btn btn-light">
+        <img src="https://www.pngmart.com/files/16/official-Google-Logo-PNG-Image.png" height="25px" width="25px">
+        Login with Google
+    </div></br>
+
     Already have an account? <a href="{% url 'login' %}">Log In here.</a>
 
 {% endblock %}
