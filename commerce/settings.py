@@ -27,8 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-SOCIAL_AUTH_FACEBOOK_KEY = '159258247151801'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'django-insecure-_ken(@idcp#todr-*0v0j2+86a1ude&g8_voe2cwv@s**5v93#'
+SOCIAL_AUTH_FACEBOOK_KEY = 'key'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'secrete'
 
 # Application definition
 
