@@ -134,10 +134,6 @@ STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = [
 	'social_core.backends.facebook.FacebookOAuth2',
-<<<<<<< HEAD
     'social_core.backends.google.GoogleOAuth2',
 	'django.contrib.auth.backends.ModelBackend',
 ]
-=======
-
->>>>>>> 6681a3687f687b3699c8562930ddb6fdf0d1aa4d
