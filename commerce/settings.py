@@ -27,8 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-SOCIAL_AUTH_FACEBOOK_KEY = '159258247151801'
-SOCIAL_AUTH_FACEBOOK_SECRET = '9a5abd0c96c7cfe2f71edaa437eedc29'
+SOCIAL_AUTH_FACEBOOK_KEY = 'key'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'secrete'
 
 # Application definition
 
@@ -134,6 +134,10 @@ STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = [
 	'social_core.backends.facebook.FacebookOAuth2',
+<<<<<<< HEAD
     'social_core.backends.google.GoogleOAuth2',
 	'django.contrib.auth.backends.ModelBackend',
 ]
+=======
+
+>>>>>>> 6681a3687f687b3699c8562930ddb6fdf0d1aa4d
