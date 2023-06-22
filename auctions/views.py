@@ -269,3 +269,12 @@ def edit(request, id):
         "listing": Listings.objects.get(id=id),
         "categories": Categories.objects.all(),
     })
+
+def delete(request, id):
+    try:
+        Listings.objects.filter(id=id).delete()
+    except IntegrityError:
+        return render(request, "auctions/mylistings.html", {
+            "message": "Error al eliminar el listado."
+        })
+    return HttpResponseRedirect(reverse("mylistings"))

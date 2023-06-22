@@ -2,16 +2,18 @@
 
 {% block body %}
     <h1> My listings </h1>
+    {{message}}
     {% for listing in listings %}
 
-        <div class="card">
-            <div class="card-body" hight = "200px">
-                <img src="{{ listing.image }}" alt="listing image" class="img-fluid"></br>
+        <div class="card" width = "600px">
+            <div class="card-body">
+                <img src="{{ listing.image }}" alt="listing image" class="img-fluid" width = "300px"></br>
                 Name: <h5 class="card-title">{{ listing.name }}</h5>
                 Description: <p class="card-text">{{ listing.description }}</p>
                 Price: <p class="card-text">{{ listing.price_start }}</p>
                 Category: <p class="card-text">{{ listing.category }}</p>
                 <a href="{% url 'bids' listing.id %}" class="btn btn-primary">View</a>
+                <a href="{% url 'delete' listing.id %}" class="btn btn-danger">Delete</a>
             </div>
         </div>
     {% endfor %}
